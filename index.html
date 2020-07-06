@@ -1,0 +1,33 @@
+<div class="mermaid">
+graph LR
+    index.html --> |名大IDでログイン|Cas認証
+    Cas認証サーバ --> |認証可否|Cas認証
+    index.html --> |ログイン無しで利用/日本語|search2.html建物名,部屋名選択ページ
+    Cas認証 --> |認証成功/日本語|search.html建物名,部屋名選択ページ
+    Cas認証 --> |認証成功/English|search1.html建物名,部屋名選択ページ
+    Cas認証 --> |名大ID,パスワード|Cas認証サーバ
+    Cas認証 --> |認証失敗|Cas認証
+    search.html建物名,部屋名選択ページ --> |検索|search.html地図表示
+    search1.html建物名,部屋名選択ページ --> |Search|search1.html地図表示
+    search.html地図表示 --> |建物内表示/部屋名情報|部屋名情報に対応したhtmlを表示/仮称:map.html
+    search1.html地図表示 --> |Display in building/部屋名情報|部屋名情報に対応したhtmlを表示/仮称:map.html
+    search2.html地図表示 --> |建物内表示/部屋名情報|部屋名情報に対応したhtmlを表示/仮称:map.html
+    search3.html地図表示 --> |Display in building/部屋名情報|部屋名情報に対応したhtmlを表示/仮称:map.html
+    search2.html建物名,部屋名選択ページ --> |検索|search2.html地図表示
+    index.html --> |ログイン無しで利用/English|search3.html建物名,部屋名選択ページ
+    search3.html建物名,部屋名選択ページ --> |Search|search3.html地図表示
+    search.html建物名,部屋名選択ページ --> |現在地,建物名情報|Googleサービス/APIにより呼び出し
+    Googleサービス/APIにより呼び出し --> |地図表示|search.html地図表示
+    search1.html建物名,部屋名選択ページ --> |現在地,建物名情報|Googleサービス/APIにより呼び出し
+    Googleサービス/APIにより呼び出し --> |地図表示|search1.html地図表示
+    search2.html建物名,部屋名選択ページ --> |現在地,建物名情報|Googleサービス/APIにより呼び出し
+    Googleサービス/APIにより呼び出し --> |地図表示|search2.html地図表示
+    search3.html建物名,部屋名選択ページ --> |現在地,建物名情報|Googleサービス/APIにより呼び出し
+    Googleサービス/APIにより呼び出し --> |地図表示|search3.html地図表示
+    主機能のみ/メニュー,エラー処理,戻る機能は省略
+
+
+
+</div>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>

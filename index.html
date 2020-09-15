@@ -15,125 +15,150 @@
   <link rel="manifest" crossorigin="use-credentials"  href="manifest.json">
 
   <style>
-  * {
-    margin: 0; padding: 0;
-  }
+    * {
+      margin: 0; padding: 0;
+    }
 
-  html, body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-
-  .background {
-    background: url() no-repeat center center;
-    background-size: cover;
-    position: relative;
-    z-index: -2;
-    width: calc(100vh * 1.78);
-    height: 100vh;
-    margin: 0 auto;
-
-  .background-wrap {
-      position: relative;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      min-width: 100%;
-      min-height: 100%;
+    html, body {
+      width: 100%;
+      height: 100%;
       overflow: hidden;
-      .background-movie {
-        position: relative;
-        display: flex;
-        justify-content: center;
-      }
-      #background-movie-player {
-        width: calc(100vh * 1.78);
-        height: 100vh;
-        flex: none;
+    }
+
+    #container {
+      overflow: hidden;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+    }
+
+    #background_video {
+      position: absolute;
+
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+
+      object-fit: cover;
+      height: 100%; width: 100%;
+    }
+
+    #video_cover {
+      position: absolute;
+
+      width: 0%; height: 0%;
+
+      background: url('') no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    #video_controls {
+　display: none;
+    }
+
+    #play img {
+      width: 100px;
+    }
+    #pause img {
+      width: 90px;
+    }
+    #pause {
+      display: none;
+    }
+
+    @media (min-width: 768px) {
+      #video_controls {
+        display: none;
       }
     }
-  }
- </style>
 
- <div id="visual_header" class="background">
-   <div class="background-wrap">
-     <div class="background-movie">
-       <div id="background-movie-player"></div>
-     </div>
-   </div>
- </div>
+    /* Demo page specific styles */
 
- <script>
- // YouTube IFrame Player API の読み込み
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// YouTubeの埋め込み
-var ytPlayer;
-function onYouTubeIframeAPIReady() {
-  ytPlayer = new YT.Player(
-    'background-movie-player', // 埋め込む場所の指定
-    {
-      playerVars: {
-        playsinline: 1,
-        autoplay: 1, // 自動再生
-        loop: 1, // ループ有効
-        listType: 'playlist', //リスト再生
-        list: 'PLYpUhFEzQAcTwTxvxx04al09DDKjnDuZT', // 再生する動画リスト
-        controls: 0, // コントロールバー非表示
-        enablejsapi: 1, //JavaScript API 有効
-        iv_load_policy: 3, //動画アノテーションを表示しない
-        disablekb:1, //キーボード操作OFF
-        showinfo:0, //動画の再生が始まる前に動画のタイトルなどの情報を表示しない
-        rel:0, //再生終了時に関連動画を表示しない
-      },
-      events: {
-        'onReady': onPlayerReady,
-        'onStateChange': onPlayerStateChange,
-        'onError': onPlayerError
-      }
+    body {
+      text-align: center;
+      font-family: 'proxima-nova', Helvetica;
     }
-  );
-}
 
-// プレーヤーの準備ができたとき
-function onPlayerReady(event) {
-  // 動画をミュートにする
-  const player = event.target;
-  player.mute();
-  player.playVideo();
-}
+    #container {
+      height: 100%;
+    }
 
-// onStateChangeのコールバック関数
-function onPlayerStateChange(event) {
-  var status = event.data;
-  var playerWrap = $('#header .background-wrap');
-  var names = {
-    '-1' : '未開始',
-    '0' : '終了',
-    '1' : '再生中',
-    '2' : '停止',
-    '3' : 'バッファリング中',
-    '5' : '頭出し済み'
-  };
-  //バッファリングの完了後、動画背景を表示させる
-  if (status == 1) {
-    $(playerWrap).css('opacity','1');
-  } else {
-    $(playerWrap).css('opacity','0');
-  }
-}
+    #overlay {
+      position: absolute;
+      top: 0; right: 0; left: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+    }
 
-// errorの発生時
-function onPlayerError(event) {
-  var errorstatus = event.data;
-  var playerWrap = $('#header .background-wrap');
-  //何らかのエラーステータスが渡された場合、youtubeプレイヤーを削除する
-  if (errorstatus !== '') {
-    $(playerWrap).remove();
-  }
-}
-</script>
+    #main_content {
+      position: relative;
+      display: inline-block;
+
+      /* Vertical center */
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #main_content h1 {
+      text-transform: uppercase;
+      font-weight: 600;
+      font-family: 'proxima-nova-condensed', Helvetica;
+      color: #fff;
+      font-size: 35px;
+    }
+
+    #main_content .sub_head {
+
+      font-size: 18px;
+    }
+
+    #main_content .info {
+
+      font-size: 12px;
+      margin-top: 10px;
+    }
+
+
+
+    #footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+    }
+    #footer a {
+
+      text-decoration: none;
+      margin: 10px;
+      font-size: 12px;
+    }
+    #footer a:first-child {
+      float: left;
+    }
+    #footer a:last-child {
+      float: right;
+    }
+  </style>
+
+  <script src="https://use.typekit.net/nlq1kdt.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+</head>
+<body>
+  <div id="container">
+    <video id="background_video" loop muted></video>
+    <div id="video_cover"></div>
+  </div>
+
+  <div id="footer">
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <a href="https://www.youtube.com/watch?v=w7JrHIHi8t" target="_blank">
+    </a>
+  </div>
+
+  <script src="bideo.js"></script>
+  <script src="main.js"></script>
+
+  <script>
+    if (window.location.host.indexOf('github.io') !== -1 && window.location.protocol !== "https:") {
+      window.location.protocol = "https";
+    }
+  </script>
+</body>
+</html>

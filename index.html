@@ -1,467 +1,61 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ja">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
-	<meta content="IE=edge" http-equiv="X-UA-Compatible">
-    <meta name="description" content="kajipass、名大発のライフハックプラットフォーム。日常生活の「めんどくさい」を無くす知恵がここにはあります。">
-    <meta name="keywords" content="ライフハック,kajipass, 名大, 日常生活, メディア, 便利, 洗い物, 掃除">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="kajipass">
-    <meta property="og:site_name" content="kajipass">
-    <meta property="og:description" content="kajipass、名大発のライフハックプラットフォーム。日常生活の「めんどくさい」を無くす知恵がここにはあります。">
-    <meta property="og:image:type" content="image/jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <title>kajipass</title>
-    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" href="android-chrome-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="android-chrome-256x256.png" sizes="256x256">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<!-- default（Safariと同じ） / black（黒） / black-translucent（ステータスバーをコンテンツに含める） -->
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-		<!-- ホーム画面に表示されるアプリ名 -->
-		<meta name="apple-mobile-web-app-title" content="NU-Maps">
-		<!-- ホーム画面に表示されるアプリアイコン -->
-		<link rel="apple-touch-icon" href="images/img.png">
-    <link rel="manifest" crossorigin="use-credentials"  href="manifest.json">
-    <meta name="msapplication-TileColor" content="#ffcc22">
-    <meta name="msapplication-TileImage" content="/mstile-150x150.png">
-    <meta name="theme-color" content="#000000">
-    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#000000" />
-		<link rel="stylesheet" href="assets/stylesheets/pages/home-1573061358160.css">
+<meta charset="UTF-8">
+<title>窓の景色を変えるモニタ</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="Super easy to implement HTML5 fullscreen background video library in JavaScript.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- default（Safariと同じ） / black（黒） / black-translucent（ステータスバーをコンテンツに含める） -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<!-- ホーム画面に表示されるアプリ名 -->
+<meta name="apple-mobile-web-app-title" content="NU-Maps">
+<!-- ホーム画面に表示されるアプリアイコン -->
+<link rel="apple-touch-icon" href="images/img.png">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script src="js/jquery.bgswitcher.js"></script>
+<iframe src="https://raw.githubusercontent.com/anars/blank-audio/master/500-milliseconds-of-silence.mp3" allow="autoplay" id="audio" style="display:none"></iframe>
+<iframe src="audio/source.mp3" allow="autoplay" style="display:none" id="iframeAudio">
+</iframe>
 
-		<style>
-		.text-area{
-			margin-top: 0px;
-		}
-		@media screen and (max-width: 700px) {
+<script>
+jQuery(function($) {
+    $('.bg-slider').bgSwitcher({
+        images: ['images/bg1.jpg','images/bg2.jpg','images/bg3.jpg'], // 切替背景画像を指定
+	interval: 5000, // 背景画像を切り替える間隔を指定 3000=3秒
+        loop: true, // 切り替えを繰り返すか指定 true=繰り返す　false=繰り返さない
+        shuffle: true, // 背景画像の順番をシャッフルするか指定 true=する　false=しない
+        effect: "fade", // エフェクトの種類をfade,blind,clip,slide,drop,hideから指定
+        duration: 500, // エフェクトの時間を指定します。
+        easing: "swing" // エフェクトのイージングをlinear,swingから指定
+    });
+});
+</script>
 
-	.title-area{
-		margin-top: -50px;
-	}
-
+<style type="text/css">
+body{margin:0}
+.bg-slider {
+	width: 100vw;
+	height: 100vh;
+	background-position:center center;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-		</style>
 
+
+</style>
 
 </head>
+<body>
 
-<body class="loading home home">
-
-
-<main>
-	<section class="js-keyvisual c-section p-keyvisual" id="l-keyvisual">
-		<div style="background-color:#000;"class="p-section__background">
-			<div class="p-keyvisual__video">
-				<video src="/assets/video/v1.mp4"></video>
-			</div>
-			<div class="js-keyvisual__list p-keyvisual__list">
-                <div class="js-keyvisual__info" data-video="/assets/video/v1.mp4" data-spimage="/assets/images/home/kv/1.jpg" data-title="あなたのライフハックを<br>支援していくプラットフォーム" data-category="kajipass" data-link="/about/" data-target=""></div>
-								<!--<div class="js-keyvisual__info" data-video="/assets/images/home/kv/1.jpg" data-spimage="/assets/images/common/apple.jpg" data-title="ライフハックの悩みを<br>解決していくプラットフォーム" data-category="kajipass" data-link="/about/" data-target=""></div>-->
-			</div>
-		<!--	<div style="background-color:#000;"class="p-keyvisual__images">
-				<div style="background-color:#000;"class="js-keyvisual__canvas p-keyvisual__canv1">
-					<div>
-						<canvas class="active"></canvas>
-						<canvas class="next hide"></canvas>
-					</div>
-
-				</div>-->
-					<!--<div class="js-keyvisual__canvas p-keyvisual__canv2">
-					<div>
-						<canvas class="active"></canvas>
-						<canvas class="next hide"></canvas>
-					</div>
-				</div>-->
-
-				<!--	<div class="js-keyvisual__canvas p-keyvisual__canv3">
-					<div>
-						<canvas class="active"></canvas>
-						<canvas class="next hide"></canvas>
-					</div>
-				</div>-->
-
-					<!--<div class="js-keyvisual__canvas p-keyvisual__canv4">
-					<div>
-						<canvas class="active"></canvas>
-						<canvas class="next hide"></canvas>
-					</div>
-				</div>-->
-
-					<div class="js-keyvisual__canvas p-keyvisual__canv5">
-					<div>
-						<canvas class="active"></canvas>
-						<canvas class="next hide"></canvas>
-					</div>
-				</div>
-				<div class="js-keyvisual__canvas p-keyvisual__canv6">
-					<div>
-						<canvas class="active"></canvas>
-						<canvas class="next hide"></canvas>
-					</div>
-				</div>
-			</div>
+<div class="bg-slider">
+</div>
 
 
-			<div style="background-color:#000;"class="p-keyvisual__cover"></div>
-			<div style="background-color:#000;"class="p-keyvisual__icon js-keicon">
-				<div class="p-keyvisual__inner">
-					<div class="js-keicon__number"><span class="current"></span><span>/</span><span class="total"></span></div>
-					<div class="circlewrap">
-						<svg class="circlewrapImg" width="40" height="400" viewBox="0 0 400 400">
-							<circle class="circlewrapBase" cx="200" cy="200" r="195" />
-							<circle class="circlewrapCircle" cx="200" cy="200" r="195" />
-						</svg>
-						<div class="p-keyvisual__arrow"></div>
-					</div>
-
-				</div>
-			</div>
-		</div>
-		<div class="c-section__inner p-keyvisual__inner">
-			<div class="p-keyvisual__info js-keyvisual__infoarea">
-				<p class="category">kajipass</p>
-				<h2>
-					<p></p>
-				</h2><a class="c-button p-button white arrow hide">
-					<p>詳細</p></a>
-			</div>
-
-
-				</div></a>
-			<div class="p-keyvisual__topicsarea">
-
-							</div>
-		</div>
-	</section>
-
-	<header class="l-header u-bb__gray" id="fixed">
-		<div class="l-header__inner">
-			<h1><a href="index.html"><img src="assets/images/common/apple.jpg" alt=""></a></h1>
-			<nav class="pc">
-				<ul>
-					<li id="navi-facility"><a href="search/index-mode=facility.html" data-category="facility">
-							<p>洗い物</p></a></li>
-					<li id="navi-map"><a href="search/index-mode=map.html" data-category="map">
-							<p>掃除</p></a></li>
-					<li id="navi-genre"><a href="search/index-mode=genre.html" data-category="genre">
-							<p>洗濯</p></a></li>
-				</ul>
-			</nav>
-		</div>
-		<!--<div id="naviButtons"></div>-->
-	</header>
-
-	<section class="l-about c-section p-section">
-		<div class="c-section__inner p-section__inner">
-			<div class="l-about__info">
-				<h2 class="p-section__title type-l">kajipassとは</h2>
-				<p class="body u-bt__shortblack u-bt__gray">名大発のライフハックプラットフォーム｢kajipass｣。<br>日常生活の「めんどくさい」を無くす知恵がここにはあります。</p><a class="p-button c-button black arrow" href="about/index.html">
-					<p>詳細</p></a>
-			</div>
-			<div class="l-about__animation">
-				<div class="p-aboutanimation js-aboutanime">
-					<div class="p-aboutanimation__background"><img src="assets/images/common/tearai.jpg" alt="">・・・・・・・
-						<div class="p-aboutanimation__shibuya"></div>
-					</div>
-					<div class="p-aboutanimation__inner">
-						<div class="p-aboutanimation__scene scene1 js-aboutanime__scene js-aboutanime__scene1" data-maintext="&lt;span&gt;皿洗いの極意とは？&lt;/span&gt;" data-subtext="30年を経て解明">
-							<div class="scene1__peop"></div>
-							<div class="scene1__ball">
-								<div class="balloon__inner">
-									<div class="balloon"></div>
-									<p></p>
-								</div>
-							</div>
-						</div>
-						<div class="p-aboutanimation__scene scene2 js-aboutanime__scene js-aboutanime__scene2" data-maintext="&lt;span&gt;1人&lt;/span&gt;暮らしの学生をサポート" data-subtext="">
-							<div class="scene2__people"><img src="assets/images/about/animation/people.svg" alt=""></div>
-						</div>
-						<div class="p-aboutanimation__scene scene3 js-aboutanime__scene js-aboutanime__scene3" data-maintext="&lt;span&gt;洗い物&lt;/span&gt;を減らす秘訣とは？" data-subtext="">
-						</div>
-					</div>
-					<div class="p-aboutanimation__textarea">
-						<p class="p-aboutanimation__maintext"></p>
-						<p class="p-aboutanimation__subtext"></p>
-					</div>
-				</div>
-				<div class="l-about__indicator js-about__indicator">
-					<div class="indicator-base js-about__indicatorbase">
-						<div class="blue"></div>
-					</div><a class="indicator-01 indicator">
-						<p>01</p></a><a class="indicator-02 indicator">
-						<p>02</p></a><a class="indicator-03 indicator">
-						<p>03</p></a>
-				</div>
-			</div>
-		</div>
-	</section>
-
-		<section class="l-feature c-section p-section">
-		<div class="c-section__inner p-section__inner">
-			<h2 class="p-section__title type-l">新着情報</h2>
-			<h3 class="p-section__subtitle"></h3>
-			<div class="p-features search-result-area">
-				<div class="js-feature__carousel">
-											<div>
-							<a class="l-result p-feature" href="https://youtu.be/oxjtcYdKSvA" target="_blank">
-								<div class="text-area">
-									<p class="title-area">知っておいた方が良い家事のライフハック7選</p>
-									<p class="body">【簡単に家の中の汚れ落とし】ちょっと意外な掃除の方法7選</p>
-
-								</div>
-								<div class="image-area p-carousel__controller js-carousel" data-carousel-dot="1">
-									<img src="assets/images/search/thumbnail/detail_71_1.jpg">
-								</div>
-							</a>
-						</div>
-											<div>
-							<a class="l-result p-feature" href="https://youtu.be/M9Ow75fZrz0" target="_blank">
-								<div class="text-area">
-									<p class="title-area">【プロが教える】正しい洗い物の仕方を知っていますか？<br></p>
-									<p class="body">プロがオススメのスポンジと洗い方をご紹介します！【食器洗い】【洗剤】【使い方】【3M】【スコッチ・ブライト】【業務用】【GEARs】</p>
-									<div class="p-label-area">
-
-																			</div>
-								</div>
-								<div class="image-area p-carousel__controller js-carousel" data-carousel-dot="1">
-									<img src="assets/images/search/thumbnail/detail_65_1.jpg">
-								</div>
-							</a>
-						</div>
-											<div>
-							<a class="l-result p-feature" href="https://youtu.be/oxjtcYdKSvA" target="_blank">
-								<div class="text-area">
-									<p class="title-area">Twitterで話題！100均の恐ろしく使える洗濯機アイテム4選</p>
-									<p class="body">Twitterで話題！100均の恐ろしく使える洗濯機アイテム4選今回は、100均の使える洗濯アイテム4つを購入者の声と共にご紹介します。</p>
-									<div class="p-label-area">
-																			</div>
-								</div>
-								<div class="image-area p-carousel__controller js-carousel" data-carousel-dot="1">
-									<img src="assets/images/search/thumbnail/detal_78_1_a8c7fb86.jpg">
-								</div>
-							</a>
-						</div>
-									</div>
-			</div>
-			<div class="p-carousel__controller js-feature__carouselcontroller">
-				<div class="p-carousel__dots"></div>
-				<div class="p-carousel__arrows"></div>
-			</div>
-		</div>
-	</section>
-
-	<section class="l-search c-section p-section">
-		<div class="c-section__inner p-section__inner">
-			<h2 class="p-section__title type-l">コンテンツ</h2>
-			<div class="p-general__wrap">
-				<div class="p-general__inner_col3">
-					<h3 class="p-section__subtitle">洗い物</h3>
-					<a href="package/3.html">
-					 <a class="pc p-button c-button black arrow titlearea-button" href="package/1.html">
-			     	<p>さらに表示</p>
-					</a>
-				</a>
-					<div class="p-general__boxes">
-                        <a class="p-general__box" href="https://youtu.be/M9Ow75fZrz0">
-							<div class="image-area"><img src="assets/images/search/thumbnail/detail_65_1.jpg">
-								<div style="opacity:2.0;" class="title-area type-center">
-
-								</div>
-							</div>
-							<div class="text-area">
-								<p>【プロが教える】正しい洗い物の仕方を知っていますか？</p>
-							</div></a><a class="p-general__box" href="https://youtu.be/M9Ow75fZrz0">
-							<div class="image-area"><img src="assets/images/search/thumbnail/araimono2.jpg">
-								<div class="title-area type-center">
-
-								</div>
-							</div>
-							<div class="text-area">
-								<p>プロがオススメのスポンジと洗い方をご紹介します！</p>
-							</div></a><a class="p-general__box" href="search/index-mode=facility&category=cmfacility.html">
-							<div class="image-area"><img src="assets/images/home/search/" alt="">
-								<div class="title-area type-center">
-									<p></p><span></span>
-								</div>
-							</div>
-							<div class="text-area">
-								<p></p>
-							</div>
-                        </a>
-                    </div>
-										<a class="sp p-button c-button black search titlearea-button" href="package/1.html">
-											<p>さらに表示</p></a>
-				</div>
-			</div>
-
-			<div class="p-general__wrap">
-				<div class="p-general__inner_col3">
-					<h3 class="p-section__subtitle">掃除</h3>
-					<a class="pc p-button c-button black arrow titlearea-button" href="package/3.html">
-			<p>さらに表示</p>
-					</a>
-					<div class="p-general__boxes"><a class="p-general__box" href="https://youtu.be/M9Ow75fZrz0">
-							<div class="image-area"><img src="assets/images/search/thumbnail/detail_71_1.jpg" alt="デジタル Digital">
-								<div class="title-area type-center">
-									<p></p><span></span>
-								</div>
-							</div>
-							<div class="text-area">
-								<p>知っておいた方が良い家事のライフハック7選</p>
-							</div></a><a class="p-general__box" href="https://youtu.be/Ws-EMU585WQ">
-							<div class="image-area">
-								<img src="assets/images/home/search/top_souji2.jpg" alt="アナログ Analog">
-								<div class="title-area type-center">
-									<p></p><span></span>
-								</div>
-							</div>
-							<div class="text-area">
-								<p>これ知ってる？Amazonでバカ売れの便利「洗濯用品」４選</p>
-							</div></a>
-
-							<a class="p-general__box" href="https://youtu.be/aqwK-ya3szY">
-							<div class="image-area">
-								<img src="assets/images/home/search/top_souji3.jpg">
-								<div class="title-area type-center">
-									<p></p><span></span>
-								</div>
-							</div>
-							<div class="text-area">
-								<p>雨の日も洗濯できる！おすすめしたい100均部屋干しグッズ8選</p>
-							</div></a>
-						</div>
-				</div>
-				<a class="sp p-button c-button black search titlearea-button" href="package/3.html">
-					<p>さらに表示</p></a>
-			</div>
-
-
-			<!-- -->
-			<div class="p-general__wrap">
-				<div class="p-general__inner_col3">
-					<h3 class="p-section__subtitle">洗濯</h3>
-					<a class="pc p-button c-button black arrow titlearea-button" href="package/2.html">
-						<p>さらに表示</p>
-					</a>
-					<div class="p-general__boxes"><a class="p-general__box" href="https://youtu.be/oxjtcYdKSvA">
-							<div class="image-area"><img src="assets/images/search/thumbnail/detal_78_1_a8c7fb86.jpg" alt="">
-								<div class="title-area type-center">
-									<p></p><span></span>
-								</div>
-							</div>
-							<div class="text-area">
-								<p>Twitterで話題！100均の恐ろしく使える洗濯機アイテム4選</p>
-							</div></a>
-
-							<a class="p-general__box" href="https://youtu.be/Ws-EMU585WQ">
-							<div class="image-area">
-								<img src="assets/images/home/search/top_senntaku2.jpg" alt="">
-								<div class="title-area type-center">
-									<p></p><span></span>
-								</div>
-							</div>
-							<div class="text-area">
-								<p>これ知ってる？Amazonでバカ売れの便利「洗濯用品」４選</p>
-							</div></a>
-
-
-							<a class="p-general__box" href="https://youtu.be/aqwK-ya3szY">
-							<div class="image-area">
-								<img src="assets/images/home/search/top_senntaku3.jpg" alt=>
-								<div class="title-area type-center">
-									<p></p><span></span>
-								</div>
-							</div>
-							<div class="text-area">
-								<p>雨の日も洗濯できる！おすすめしたい100均部屋干しグッズ8選</p>
-							</div></a>
-
-						</div>
-				</div>
-				<a class="sp p-button c-button black search titlearea-button" href="package/3.html">
-					<p>さらに表示</p></a>
-			</div>
-		</div>
-	</section>
-	<section class="l-showcase c-section p-section u-bt__gray">
-		<div class="c-section__inner p-section__inner">
-			<h2 class="p-section__title type-l">ニュース</h2>
-            <a class="pc p-button c-button black arrow titlearea-button" href="2.html">
-				<p>さらに表示</p>
-			</a>
-			<!-- テンプレートマージ前 -->
-			<div class="l-showcase__wrap js-showcase__carousel">
-				<h3 class="p-section__subtitle"></h3>
-
-				<div class="l-showcase__inner js-showcase p-showcases p-carousels">
-																		<a class="p-showcase p-carousel" href="showcase/1.html">
-								<div class="inner p-carousel__inner">
-									<div class="image-area"><img src="assets/images/plan/package1.jpg"></div>
-									<div class="text-area">
-										<p class="p-showcase__title">kajipass<br>キックオフ</p>
-										<p class="p-showcase__body">kajipassのサービススタートにつきまして〜</p>
-									</div>
-								</div>
-		                    </a>
-																																	<div class="p-showcase p-carousel" href="/showcase">
-									<div class="inner p-carousel__inner">
-										<div class="image-area"><img src="assets/images/plan/package1.jpg"></div>
-										<div class="text-area">
-											<p class="p-showcase__title"></p>
-											<p class="p-showcase__body">Coming Soon</p>
-										</div>
-									</div>
-								</div>
-															<div class="p-showcase p-carousel" href="/showcase">
-									<div class="inner p-carousel__inner">
-										<div class="image-area"><img src="assets/images/plan/package1.jpg"></div>
-										<div class="text-area">
-											<p class="p-showcase__title"></p>
-											<p class="p-showcase__body">Coming Soon</p>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-				<div class="l-showcase__inner js-showcase__controllers">
-					<div class="js-showcase__dots"></div>
-					<div class="js-showcase__arrows"><a class="js-showcase__arrowprev"></a><a class="js-showcase__arrownext"></a></div>
-				</div>
-				<div class="p-carousel__controller">
-					<div class="p-carousel__dots js-showcase__dots"></div>
-					<div class="p-carousel__arrows"></div>
-				</div>
-			</div><a class="sp p-button c-button black search titlearea-button" href="showcase.html">
-				<p>さらに表示</p></a>
-		</div>
-	</section>
-
-</main>
-<footer class="l-footer u-bt__gray"><a class="c-pagetop p-pagetop scrollto js-pagetop" data-scrollto="main"><img src="assets/images/common/icon-arrow-up.svg" alt="Page Top"></a>
-    <div class="l-footer__inner">
-
-            <div class="l-footer__shares">
-        </div>
-        <div class="l-footer__linkarea u-bt__shortblack"></div>
-    </div>
-    <div class="l-footer__copyarea">
-        <div class="inner u-bt__gray">
-            <p class="copy">© kajipass</p>
-        </div>
-    </div>
-</footer>
-<div class="l-modal" id="favorite-modal"></div>
-<div class="l-modal" id="detail-search-modal"></div>
-<div class="l-modal" id="sphere-view-modal"></div>
-<div class="l-modal" id="modal"></div><script src="assets/javascripts/home-1583141651823.js"></script>
 </body>
-
 <script>
 <!-- service workerの登録関係
 -->
@@ -489,5 +83,4 @@ err);
 });
 }
 </script>
-
 </html>
